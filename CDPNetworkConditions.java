@@ -35,8 +35,7 @@ public class CDPNetworkConditions {
 	public void emulateSlowNetwork() {
 		devTool.createSession();
 		devTool.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-		devTool.send(
-				Network.emulateNetworkConditions(false, 100, 200000, 100000, Optional.of(ConnectionType.CELLULAR3G)));
+		devTool.send(Network.emulateNetworkConditions(false, 100, 200000, 100000, Optional.of(ConnectionType.CELLULAR3G)));
 
 		long startTime = System.currentTimeMillis();
 		driver.get("https://www.qed42.com");
@@ -49,8 +48,7 @@ public class CDPNetworkConditions {
 	public void emulateNetworkOffline() {
 		devTool.createSession();
 		devTool.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-		devTool.send(
-				Network.emulateNetworkConditions(true, 100, 200000, 100000, Optional.of(ConnectionType.CELLULAR3G)));
+		devTool.send(Network.emulateNetworkConditions(true, 100, 200000, 100000, Optional.of(ConnectionType.CELLULAR3G)));
 
 		devTool.addListener(loadingFailed(), loadingFailed -> {
 			Assert.assertEquals(loadingFailed.getErrorText(), "net::ERR_INTERNET_DISCONNECTED");
